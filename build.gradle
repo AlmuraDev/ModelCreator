@@ -60,7 +60,7 @@ launch4j {
     copyConfigurable = project.tasks.shadowJar.outputs.files
     mainClassName = "com.mrcrayfish.modelcreator.Start"
     icon = "${projectDir}/src/main/resources/icons/application.ico"
-    outfile = "${archivesBaseName}-${version}.exe"
+    outfile = "${project.tasks.shadowJar.archiveName.replace('.jar', '.exe')}"
     outputDir = "libs"
     jar = "lib/${project.tasks.shadowJar.archiveName}"
 }
