@@ -1,0 +1,53 @@
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '1.2.4'
+}
+
+defaultTasks 'clean', 'shadowJar'
+
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
+archivesBaseName = project.name.toLowerCase()
+version = "${project.version}"
+
+repositories {
+    mavenCentral()
+    maven { url = 'http://clojars.org/repo/' } // Specifically for slick-util
+}
+
+dependencies {
+    compile group: 'com.google.code.gson', name: 'gson', version: '2.8.0'
+    compile group: 'com.jtattoo', name: 'JTattoo', version: '1.6.11'
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.5'
+    compile group: 'org.lwjgl.lwjgl', name: 'lwjgl', version: "${project.lwjglVersion}"
+    compile group: 'org.lwjgl.lwjgl', name: 'lwjgl_util', version: "${project.lwjglVersion}"
+    compile group: 'slick-util', name: 'slick-util', version: '1.0.0'
+}
+
+configure([compileJava, compileTestJava]) {
+    options.compilerArgs += ['-Xlint:all', '-Xlint:-path']
+    options.deprecation = true
+    options.encoding = 'UTF-8'
+}
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'com.mrcrayfish.modelcreator.Start',
+                'Built-By': System.properties['user.name'],
+                'Created-By': System.properties['java.vm.version'] + ' (' + System.properties['java.vm.vendor'] + ')',
+                'Implementation-Title': project.name,
+                'Implementation-Version': version,
+                'Implementation-Vendor': url
+        )
+    }
+}
+
+javadoc {
+    options.addStringOption('Xdoclint:none', '-quiet')
+}
+
+shadowJar {
+    classifier = null
+}

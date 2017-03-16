@@ -1,57 +1,78 @@
-# Windows image file caches
-Thumbs.db
-ehthumbs.db
+# Build #
+#########
+MANIFEST.MF
+dependency-reduced-pom.xml
 
-# Folder config file
-Desktop.ini
+# Compiled #
+############
+bin
+build
+dist
+lib
+out
+run
+target
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
 
-# Recycle Bin used on file shares
-$RECYCLE.BIN/
+# Databases #
+#############
+*.db
+*.sql
+*.sqlite
 
-# Windows Installer files
-*.cab
-*.msi
-*.msm
-*.msp
+# Packages #
+############
+*.7z
+*.dmg
+*.gz
+*.iso
+*.rar
+*.tar
+*.zip
 
-# Windows shortcuts
-*.lnk
+# Repository #
+##############
+.git
 
-# =========================
-# Operating System Files
-# =========================
+# Logging #
+###########
+/logs
+*.log
 
-# OSX
-# =========================
+# Misc #
+########
+*.bak
 
+# System #
+##########
 .DS_Store
-.AppleDouble
-.LSOverride
+ehthumbs.db
+Thumbs.db
 
-# Thumbnails
-._*
-
-# Files that might appear on external disk
-.Spotlight-V100
-.Trashes
-
-# Directories potentially created on remote AFP share
-.AppleDB
-.AppleDesktop
-Network Trash Folder
-Temporary Items
-.apdisk
-/bin/
-
+# Project #
+###########
+.classpath
+.externalToolBuilders
+.gradle
+.idea
 .project
-.classpath
-*.classpath
-.classpath
-test.json
-/bin1/
-/bin1/
-out/
-.idea/
+.settings
+.checkstyle
+.factorypath
+run
+./eclipse
+nbproject
+atlassian-ide-plugin.xml
+build.xml
+nb-configuration.xml
 *.iml
-src/META-INF/MANIFEST.MF
-.metadata/
+*.ipr
+*.iws
+/.apt_generated/
+*.launch
+/run/
