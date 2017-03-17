@@ -109,7 +109,6 @@ public class ModelCreator extends JFrame
 		setPreferredSize(new Dimension(1200, 815));
 		setMinimumSize(new Dimension(1200, 500));
 		setLayout(new BorderLayout(10, 0));
-		setIconImages(getIcons());
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 
 		canvas = new Canvas();
@@ -189,16 +188,6 @@ public class ModelCreator extends JFrame
 		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		add(scroll, BorderLayout.EAST);
-	}
-
-	private List<Image> getIcons()
-	{
-		List<Image> icons = new ArrayList<Image>();
-		icons.add(Toolkit.getDefaultToolkit().getImage("res/icons/set/icon_16x.png"));
-		icons.add(Toolkit.getDefaultToolkit().getImage("res/icons/set/icon_32x.png"));
-		icons.add(Toolkit.getDefaultToolkit().getImage("res/icons/set/icon_64x.png"));
-		icons.add(Toolkit.getDefaultToolkit().getImage("res/icons/set/icon_128x.png"));
-		return icons;
 	}
 
 	private void setupMenuBar()
