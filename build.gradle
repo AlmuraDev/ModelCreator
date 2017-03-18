@@ -1,11 +1,10 @@
 plugins {
     id "java"
-    id "com.github.johnrengelman.shadow" version "1.2.4"
     id "edu.sc.seis.launch4j" version "2.3.0"
     id "ninja.miserable.blossom" version "1.0.1"
 }
 
-defaultTasks "clean", "shadowJar", "createExe"
+defaultTasks "clean", "build", "createExe"
 
 sourceCompatibility = "1.8"
 targetCompatibility = "1.8"
@@ -34,6 +33,12 @@ configure([compileJava, compileTestJava]) {
 }
 
 jar {
+    dependsOn configurations.compile
+
+    from {
+        configurations.compile.collect { zipTree(it) }
+    }
+
     manifest {
         attributes(
                 "Main-Class": "com.mrcrayfish.modelcreator.Start",
@@ -50,20 +55,12 @@ javadoc {
     options.addStringOption("Xdoclint:none", "-quiet")
 }
 
-// Fat-jar solution
-shadowJar {
-    rename(/.+\.dll$/, 'natives/windows/$0')
-    classifier = null
-}
-
 // Windows executable file solution
 launch4j {
-    copyConfigurable = project.tasks.shadowJar.outputs.files
     mainClassName = "com.mrcrayfish.modelcreator.Start"
     icon = "${projectDir}/src/main/resources/icons/application.ico"
-    outfile = "${project.tasks.shadowJar.archiveName.replace('.jar', '.exe')}"
+    outfile = "${project.tasks.jar.archiveName.replace('.jar', '.exe')}"
     outputDir = "libs"
-    jar = "lib/${project.tasks.shadowJar.archiveName}"
 }
 
 
