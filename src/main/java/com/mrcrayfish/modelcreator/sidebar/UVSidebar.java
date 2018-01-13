@@ -165,16 +165,20 @@ public class UVSidebar extends Sidebar
 			int newMouseY = Mouse.getY();
 
 			int side = getFace(canvasHeight, newMouseX, newMouseY);
-			if (side != -1 | selected != -1)
+			if (side != -1 || selected != -1)
 			{
 				if (manager.getSelectedElement() != null)
 				{
-					Face face = manager.getSelectedElement().getAllFaces()[(selected != -1 ? selected : side)];
+					if (selected == -1)
+						selected = side;
+
+					manager.getSelectedElement().setSelectedFace(selected);
+					Face face = manager.getSelectedElement().getSelectedFace();
 
 					int xMovement = (int) ((newMouseX - this.lastMouseX) / 6);
 					int yMovement = (int) ((newMouseY - this.lastMouseY) / 6);
 
-					if (xMovement != 0 | yMovement != 0)
+					if (xMovement != 0 || yMovement != 0)
 					{
 						if (Mouse.isButtonDown(0))
 						{
