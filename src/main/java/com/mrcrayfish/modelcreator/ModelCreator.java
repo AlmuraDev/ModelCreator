@@ -127,6 +127,16 @@ public class ModelCreator extends JFrame
 		{
 			Display.create();
 
+			Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler()
+			{
+				@Override
+				public void uncaughtException (Thread thread, final Throwable ex)
+				{
+					Display.destroy();
+					System.exit(0);
+				}
+			});
+
 			WelcomeDialog.show(ModelCreator.this);
 
 			loop();
@@ -534,11 +544,11 @@ public class ModelCreator extends JFrame
 
 	public int select(int x, int y)
 	{
-		IntBuffer selBuffer = ByteBuffer.allocateDirect(1024).order(ByteOrder.nativeOrder()).asIntBuffer();
-		int[] buffer = new int[256];
+		IntBuffer selBuffer = ByteBuffer.allocateDirect(4096).order(ByteOrder.nativeOrder()).asIntBuffer();
+		int[] buffer = new int[1024];
 
-		IntBuffer viewBuffer = ByteBuffer.allocateDirect(64).order(ByteOrder.nativeOrder()).asIntBuffer();
-		int[] viewport = new int[4];
+		IntBuffer viewBuffer = ByteBuffer.allocateDirect(1024).order(ByteOrder.nativeOrder()).asIntBuffer();
+		int[] viewport = new int[16];
 
 		int hits;
 		GL11.glGetInteger(GL11.GL_VIEWPORT, viewBuffer);
