@@ -266,7 +266,7 @@ public class Importer
 
 			for (Face face : element.getAllFaces())
 			{
-				face.setEnabled(false);
+				face.setEnabled(true);
 			}
 
 			if (obj.has("faces") && obj.get("faces").isJsonObject())
